@@ -1,0 +1,54 @@
+{
+  "name": "varino-travels-application-crm",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Advanced Travel Agency CRM System for Varino Travels",
+  "main": "public/electron.js",
+  "homepage": "./",
+  "scripts": {
+    "start": "concurrently \"npm:react-start\" \"npm:electron-start\"",
+    "react-start": "react-scripts start",
+    "electron-start": "wait-on http://localhost:3000 && electron .",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "electron-dev": "npm run start",
+    "build-mac": "npm run build && electron-builder --mac",
+    "build-windows": "npm run build && electron-builder --win",
+    "build-linux": "npm run build && electron-builder --linux",
+    "build-all": "npm run build && electron-builder -mwl"
+  },
+  "dependencies": {
+    "date-fns": "^3.6.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2",
+    "recharts": "^2.13.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "electron": "^31.3.1",
+    "electron-builder": "^24.13.3",
+    "react-scripts": "5.0.1",
+    "wait-on": "^7.2.0"
+  },
+  "build": {
+    "appId": "com.varino.travels.crm",
+    "productName": "Varino Travels CRM",
+    "files": [
+      "build/**/*",
+      "public/electron.js",
+      "public/preload.js"
+    ],
+    "mac": {
+      "category": "public.app-category.business",
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  }
+}
